@@ -1,19 +1,9 @@
 <resources>
-    <string name="app_name">BC2</string>
+    <string name="app_name">BookCase</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string-array name="books">
-        <item>The Great Gatsby</item>
-        <item>The Grapes of Wrath</item>
-        <item>Nineteen Eighty-Four</item>
-        <item>Ulysses</item>
-        <item>Lolita</item>
-        <item>Catch-22</item>
-        <item>The Catcher in the Rye</item>
-        <item>Beloved</item>
-        <item>The Lord of the Rings</item>
-        <item>Brave New World</item>
-    </string-array>
+
+    <string name="publishedIn">Published in %d</string>
+    <string name="pageLength">%s pages</string>
+    <string name="image_of_book_cover">Image of book cover</string>
 
 </resources>
