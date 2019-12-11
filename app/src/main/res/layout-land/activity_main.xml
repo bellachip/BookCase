@@ -6,13 +6,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="270dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/stopBtn"
+        app:layout_constraintTop_toBottomOf="@+id/searchBtn" />
+
+
+    <Button
+        android:id="@+id/stopBtn"
+        android:layout_width="70dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="25dp"
+        android:text="@string/stop"
+        app:layout_constraintStart_toEndOf="@+id/pauseBtn"
+        app:layout_constraintTop_toBottomOf="@+id/searchInput" />
+
+    <Button
+        android:id="@+id/pauseBtn"
+        android:layout_width="70dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="14dp"
+        android:text="@string/pause"
+        app:layout_constraintStart_toEndOf="@+id/container_1"
+        app:layout_constraintTop_toBottomOf="@+id/searchInput" />
 
     <FrameLayout
         android:id="@+id/container_1"
         android:layout_width="202dp"
         android:layout_height="match_parent"
-        android:layout_marginEnd="480dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="1dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
@@ -20,39 +49,56 @@
     <FrameLayout
         android:id="@+id/container_2"
         android:layout_width="480dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="2dp"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.723"
-        app:layout_constraintStart_toEndOf="@+id/container_1"
-        app:layout_constraintTop_toBottomOf="@+id/searchInput"
-        app:layout_constraintVertical_bias="0.155">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/container_1">
 
     </FrameLayout>
 
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:layout_marginEnd="33dp"
-        android:text="@android:string/search_go"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toEndOf="@+id/searchInput"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/searchInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_width="215dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="14dp"
         android:ems="10"
         android:inputType="textShortMessage"
         app:layout_constraintStart_toEndOf="@+id/container_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="91dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:text="@android:string/search_go"
+        app:layout_constraintStart_toEndOf="@+id/searchInput"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nowPlaying"
+        android:layout_width="82dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/now_playing"
+        app:layout_constraintEnd_toStartOf="@+id/nowPlayingBookTitle"
+        app:layout_constraintStart_toEndOf="@id/container_1"
+        app:layout_constraintTop_toBottomOf="@+id/pauseBtn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nowPlayingBookTitle"
+        android:layout_width="336dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="40dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nowPlaying"
         app:layout_constraintTop_toTopOf="parent" />
 
 
