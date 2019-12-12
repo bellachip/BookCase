@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:textAlignment="center"
+    tools:context=".BookDetailsFragment">
+
+    <ImageView
+        android:id="@+id/imgCover"
+        android:layout_width="277dp"
+        android:layout_height="299dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:adjustViewBounds="false"
+        android:src="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@id/clBookInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clBookInfo"
+        android:layout_width="309dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgCover"
+        app:layout_constraintStart_toStartOf="@+id/imgCover"
+        app:layout_constraintTop_toBottomOf="@+id/imgCover"
+        app:layout_constraintVertical_bias="1.0">
+
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/ibtnPlay"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_marginStart="8dp"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:background="#00FFFFFF"-->
+        <!--            android:cropToPadding="false"-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            android:src="@drawable/btnplay"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@id/tvYear"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:layout_constraintVertical_bias="0.0" />-->
+
+        <Button
+            android:id="@+id/ibtnPlay"
+            android:layout_width="49dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="16dp"
+            android:background="#bbc0c6"
+            android:text="Play" />
+
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/sbNowPlaying"-->
+        app:layout_constraintEnd_toEndOf="parent"
+        <!--            app:layout_constraintEnd_toStartOf="@+id/ibtnStop" />-->
+
+        <TextView
+            android:id="@+id/tvAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+        <TextView
+            android:id="@+id/tvYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Year"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvAuthor"
+            app:layout_constraintTop_toBottomOf="@+id/tvAuthor" />
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Duration"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvYear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvYear" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Title"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/ibtnDownloadDelete"
+            app:layout_constraintTop_toTopOf="@+id/ibtnPlay" />
+
+        <ImageButton
+            android:id="@+id/ibtnDownloadDelete"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btndownload"
+            app:layout_constraintBottom_toBottomOf="@+id/ibtnPlay"
+            app:layout_constraintStart_toEndOf="@+id/ibtnPlay"
+            app:layout_constraintTop_toTopOf="@+id/ibtnPlay"
+            app:layout_constraintVertical_bias="0.214" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,8 +1,11 @@
 package edu.temple.bc2;
 
 import android.content.Context;
+import android.app.DownloadManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -17,6 +20,38 @@ import com.squareup.picasso.Picasso;
 
 import android.widget.ImageView;
 import java.util.Objects;
+import java.io.File;
+
+
+import android.Manifest;
+
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Looper;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
+import edu.temple.audiobookplayer.AudiobookService;
 
 
 /**
@@ -30,6 +65,11 @@ public class BookDetailsFragment extends Fragment {
     ConstraintLayout bookDetailsView;
     ImageView bookCover;
     TextView bookTitle, bookAuthor, bookPublishedIn, bookPageLength;
+    Button download;
+    Button delete;
+    String baseDownloadURL = "https://kamorris.com/lab/audlib/download.php?id=";
+    AudiobookService audiobookService;
+    boolean audioBound = false;
 
 
     Book book;
@@ -88,9 +128,73 @@ public class BookDetailsFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     fragmentParent.playBook(book);
+
+//                    File audio = new File(Environment.DIRECTORY_DOWNLOADS, book.getTitle() + ".mp3").getAbsoluteFile();
+//                    if (!audio.exists()){
+//                        ((audioControl) getActivity()).playAudio(book.getId(), progressBar.getProgress());
+//                    }
                 }
             });
         }
+
+        download = getView().findViewById(R.id.downloadBtn);
+        download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread t2 = new Thread() {
+                    @Override
+                    public void run() {
+                        File check = new File(getContext().getFilesDir(), book.getTitle() + ".mp3");
+                        Log.d("check path", check.getAbsolutePath());
+                        Log.d("check exist", String.valueOf(check.exists()));
+                        if (!check.exists()) {
+                            try {
+
+                                URL bookUrl = new URL(baseDownloadURL + book.getId());
+
+                                URLConnection conn = bookUrl.openConnection();
+                                int contentLength = conn.getContentLength();
+
+                                DataInputStream stream = new DataInputStream(bookUrl.openStream());
+
+                                byte[] buffer = new byte[contentLength];
+                                stream.readFully(buffer);
+                                stream.close();
+
+                                DataOutputStream fos = new DataOutputStream(new FileOutputStream(check));
+                                fos.write(buffer);
+                                fos.flush();
+                                fos.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                };
+                t2.start();
+            }
+        });
+
+
+        delete = getView().findViewById(R.id.deleteBtn);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File check = new File(getContext().getFilesDir(), book.getTitle() + ".mp3");
+                if (check.exists()) {
+                    check.delete();
+                    Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Does not exist, cant delete", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+
+
+
 
     }
 
@@ -124,7 +228,7 @@ public class BookDetailsFragment extends Fragment {
         bookPublishedIn.setText(String.format(getResources().getString(R.string.publishedIn), book.getPublished()));
         bookPublishedIn.setGravity(Gravity.CENTER);
 
-        bookPageLength.setText(String.format(getResources().getString(R.string.pageLength), book.getDuration()));
+        //bookPageLength.setText(String.format(getResources().getString(R.string.pageLength), book.getDuration()));
         bookPageLength.setGravity(Gravity.CENTER);
     }
 

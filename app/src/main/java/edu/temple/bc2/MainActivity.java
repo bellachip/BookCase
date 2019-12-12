@@ -1,5 +1,6 @@
 package edu.temple.bc2;
 
+import android.Manifest;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -28,6 +29,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+
+import android.app.DownloadManager;
+import android.os.Environment;
+import android.widget.Toast;
 
 import edu.temple.audiobookplayer.AudiobookService;
 
@@ -116,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
 
                             @Override
                             public void onStopTrackingTouch(SeekBar seekBar) {
+
+
 
                             }
                         });
@@ -210,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 10089);
 
         // Get user search query if any
         nowPlayingBookTitleText = findViewById(R.id.nowPlayingBookTitle);
